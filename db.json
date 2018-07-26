@@ -1,0 +1,18 @@
+{
+    "posts": [
+		{ "id": 0, "brand": "brand0", "color": "black", "engineSize": 0, "drive": "2wd" },
+		{ "id": 1, "brand": "brand1", "color": "white", "engineSize": 1, "drive": "4wd" },
+		{ "id": 2, "brand": "brand2", "color": "orange", "engineSize": 2, "drive": "4wd" },
+		{ "id": 3, "brand": "brand3", "color": "blue", "engineSize": 3, "drive": "awd" },
+		{ "id": 4, "brand": "brand4", "color": "green", "engineSize": 4, "drive": "awd" },
+		{ "id": 5, "brand": "brand5", "color": "yellow", "engineSize": 5, "drive": "awd" },
+		{ "id": 6, "brand": "brand6", "color": "indigo", "engineSize": 6, "drive": "2wd" },
+		{ "id": 7, "brand": "brand7", "color": "pink", "engineSize": 7, "drive": "4wd" },
+		{ "id": 8, "brand": "brand8", "color": "red", "engineSize": 8, "drive": "awd" },
+		{ "id": 9, "brand": "brand9", "color": "purple", "engineSize": 9, "drive": "4wd" }
+    ],
+    "comments": [
+		{ "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+}
