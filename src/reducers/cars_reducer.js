@@ -1,4 +1,4 @@
-import { FETCH_CARS, SEARCH_CARS } from '../actions/types';
+import { FETCH_CARS, SEARCH_CARS_BY_BRAND, SEARCH_CARS_BY_COLOR, SEARCH_CARS_BY_ENGINE, SEARCH_CARS_BY_DRIVE } from '../types';
 
 const STATE = {
 	cars: []

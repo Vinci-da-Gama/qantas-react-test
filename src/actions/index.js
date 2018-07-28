@@ -1,8 +1,8 @@
-import { FETCH_CARS, SEARCH_CARS } from './types';
 import axios from 'axios';
-import { handleError } from '../helpers/error-handler'
+import { FETCH_CARS, SEARCH_CARS_BY_BRAND, SEARCH_CARS_BY_COLOR, SEARCH_CARS_BY_ENGINE, SEARCH_CARS_BY_DRIVE } from '../types';
+import { handleError } from '../helpers/error-handler';
 
-const url = 'http://localhost:3000/posts/';
+const url = 'http://localhost:3000/cars/';
 
 const grabCars = (cars) => {
 	return {
@@ -22,3 +22,5 @@ export const fetchAllCars = () => {
 			});
 	};
 };
+
+

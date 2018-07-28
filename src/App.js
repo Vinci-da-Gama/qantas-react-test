@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from './logo.png';
 import './App.css';
 import CarsList from './container/cars-list';
+import Spinner from './component/spinner';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedBrand:'',
+			selectedCars: []
+		};
+	}
+
+	onSelected(val) {
+		console.log('18 -- ', val);
+	}
+	
   	render() {
+		if (!this.props.cars.length || !this.props.cars) {
+			return (
+				<Spinner />
+			);
+		}
 		return (
 			<div className="container-fluid px-0">
 				<header>
@@ -17,18 +36,34 @@ class App extends Component {
 							<span className="navbar-toggler-icon"></span>
 						</button>
 					
-						<div className="collapse navbar-collapse justify-content-end" id="collapseNavbar">
+						<div className="collapse navbar-collapse" id="collapseNavbar">
 							<form className="form-inline my-2 my-lg-0">
-								<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-								<button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+								<label className="mr-sm-2" htmlFor="carBrand">Brand</label>
+								<select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" onChange={(event) => this.onSelected(event.target.value)}>
+									<option value="BRAND" disabled>BRAND</option>
+									<option value="brand0">brand0</option>
+									<option value="brand1">brand1</option>
+									<option value="brand2">brand2</option>
+									<option value="brand3">brand3</option>
+									<option value="brand4">brand4</option>
+									<option value="brand5">brand5</option>
+									<option value="brand7">brand7</option>
+									<option value="brand9">brand9</option>
+								</select>
 							</form>
 						</div>
 					</div>
 				</header>
-				<CarsList />
+				<CarsList cars={this.props.cars} />
 			</div>
 		);
   	}
 }
 
-export default App;
+const mapStateToProps = (cars) => {
+	return {
+		cars: cars.cars.cars
+	};
+};
+
+export default connect(mapStateToProps, null)(App);
