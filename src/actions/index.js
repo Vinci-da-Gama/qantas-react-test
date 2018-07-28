@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { FETCH_CARS, SEARCH_CARS_BY_BRAND, SEARCH_CARS_BY_COLOR, SEARCH_CARS_BY_ENGINE, SEARCH_CARS_BY_DRIVE } from '../types';
+import { FETCH_CARS } from '../types';
 import { handleError } from '../helpers/error-handler';
 
-const url = 'http://localhost:3000/cars/';
+const url = 'http://localhost:3000/cars';
 
 const grabCars = (cars) => {
 	return {
@@ -23,4 +23,14 @@ export const fetchAllCars = () => {
 	};
 };
 
-
+export const searchByBrand = (brand) => {
+	return (dispatch) => {
+		return axios.get(`${url}?brand=${brand}`)
+		.then((resp) => {
+			dispatch(grabCars(resp.data));
+		})
+		.catch((err) => {
+			handleError(err);
+		});
+	};
+};

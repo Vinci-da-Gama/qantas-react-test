@@ -11,12 +11,9 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
-import { fetchAllCars } from './actions';
 
 const rootStore = createStore(reducers, applyMiddleware(thunk));
 const RootContainer = document.getElementById('root');
-
-rootStore.dispatch(fetchAllCars());
 
 ReactDOM.render(
     <Provider store={rootStore}>

@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import logo from './logo.png';
 import './App.css';
 import CarsList from './container/cars-list';
 import Spinner from './component/spinner';
+import SelectSearch from './container/select-search';
+import { fetchAllCars } from './actions';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			selectedBrand:'',
-			selectedCars: this.props.cars
+			selectedCars: []
 		};
+	}
+
+	componentWillMount() {
+	  this.props.fetchAllCars();
 	}
 
 	componentWillReceiveProps(nextProps){
@@ -21,10 +28,6 @@ class App extends Component {
 			});
 		}
     }
-
-	onSelected(val) {
-		console.log('18 -- ', val);
-	}
 	
   	render() {
 		if (!this.props.cars.length || !this.props.cars) {
@@ -45,20 +48,7 @@ class App extends Component {
 						</button>
 					
 						<div className="collapse navbar-collapse" id="collapseNavbar">
-							<form className="form-inline my-2 my-lg-0">
-								<label className="mr-sm-2" htmlFor="carBrand">Brand</label>
-								<select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" onChange={(event) => this.onSelected(event.target.value)}>
-									<option value="BRAND" disabled>BRAND</option>
-									<option value="brand0">brand0</option>
-									<option value="brand1">brand1</option>
-									<option value="brand2">brand2</option>
-									<option value="brand3">brand3</option>
-									<option value="brand4">brand4</option>
-									<option value="brand5">brand5</option>
-									<option value="brand7">brand7</option>
-									<option value="brand9">brand9</option>
-								</select>
-							</form>
+							<SelectSearch />
 						</div>
 					</div>
 				</header>
@@ -74,4 +64,8 @@ const mapStateToProps = (cars) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ fetchAllCars }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
