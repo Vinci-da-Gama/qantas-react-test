@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
+import CarsList from './container/cars-list';
 
 class App extends Component {
   	render() {
@@ -24,9 +25,7 @@ class App extends Component {
 						</div>
 					</div>
 				</header>
-				<p className="">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
+				<CarsList />
 			</div>
 		);
   	}

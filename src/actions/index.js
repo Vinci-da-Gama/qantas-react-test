@@ -1,18 +1,46 @@
-import request from 'request';
+import { FETCH_CARS, SEARCH_CARS } from './types';
+import axios from 'axios';
 
-export const GET_CARS = 'GET_CARS';
-export const SEARCH_CARS = 'SEARCH_CARS';
+const url = 'http://localhost:3000/posts/';
 
-const gerRequest = () => {
+const grabCars = (cars) => {
+	console.log('7 -- ', cars);
+	return {
+		type: FETCH_CARS,
+		cars
+	};
+};
+
+export const fetchAllCars = () => {
+	return (dispatch) => {
+		return axios.get(url)
+			.then((resp) => {
+				console.log('18 -- (action index) ', resp);
+				dispatch(grabCars(resp.data));
+			})
+			.catch((err) => {
+				throw err;
+			});
+	};
+};
+
+
+
+
+/* const gerRequest = () => {
 	const url = 'http://localhost:3000/posts/';
-	let req = request.get(url);
-	console.log('9 -- req: ', req);
-	return req;
+	return request(url, function (err, res, body) {
+		if (err) {
+			return err;
+		} else {
+			return body;
+		}
+	});
 }
 
 export const grabCars = () => {
 	return {
-		type: GET_CARS,
+		type: FETCH_CARS,
 		payload: gerRequest()
 	};
 }
@@ -22,4 +50,4 @@ export const searchCars = () => {
 		type: SEARCH_CARS,
 		payload: 'hello world'
 	};
-}
+} */
