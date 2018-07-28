@@ -10,9 +10,17 @@ class App extends Component {
 		super(props);
 		this.state = {
 			selectedBrand:'',
-			selectedCars: []
+			selectedCars: this.props.cars
 		};
 	}
+
+	componentWillReceiveProps(nextProps){
+        if(nextProps.cars !== this.props.cars){
+            this.setState({
+				selectedCars: nextProps.cars
+			});
+		}
+    }
 
 	onSelected(val) {
 		console.log('18 -- ', val);
@@ -54,7 +62,7 @@ class App extends Component {
 						</div>
 					</div>
 				</header>
-				<CarsList cars={this.props.cars} />
+				<CarsList cars={this.state.selectedCars} />
 			</div>
 		);
   	}
