@@ -24,10 +24,10 @@ export default ({car: { id, brand, color, engineSize, drive }}) =>  (
                     </span>
                 </li>
                 <li className="list-group-item">
-                    <span className="float-left text-left text-secondary w-50">
+                    <span className="float-left text-left text-secondary w-75">
                         EngineSize: 
                     </span>
-                    <span className="float-right text-right text-dark w-50">
+                    <span className="float-right text-right text-dark w-25">
                         { engineSize }
                     </span>
                 </li>

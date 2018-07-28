@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SingleCar from '../component/single-car';
+import Spinner from '../component/spinner';
 
 const CarsList = ({ cars }) => {
 	if (!cars.length) {
 		return (
-			<div>
-				No cars.
-			</div>
+			<Spinner />
 		);
 	}
 	return (

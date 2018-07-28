@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(210, 210, 210, .7);
     z-index: 1;
 }
   
@@ -18,9 +18,9 @@
     position: relative;
     top: 33%;
     text-indent: -9999em;
-    border-top: 1.1em solid #a1ffd4;
-    border-right: 1.1em solid #a1ffd4;
-    border-bottom: 1.1em solid #a1ffd4;
+    border-top: 1.1em solid rgba(200, 110, 110, .9);
+    border-right: 1.1em solid rgba(200, 110, 110, .9);
+    border-bottom: 1.1em solid rgba(200, 110, 110, .9);
     border-left: 1.1em solid rgba(231, 48, 36, .9);
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
