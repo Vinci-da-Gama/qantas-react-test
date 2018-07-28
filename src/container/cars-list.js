@@ -24,7 +24,6 @@ const CarsList = ({ cars }) => {
 
 // modify...
 const mapStateToProps = (cars) => {
-	console.log('22 -- ', cars.cars.cars);
 	return {
 		cars: cars.cars.cars
 	};

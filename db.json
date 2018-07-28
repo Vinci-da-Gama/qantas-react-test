@@ -1,6 +1,6 @@
 {
     "posts": [
-		{ "id": 0, "brand": "brand0", "color": "black", "engineSize": 0, "drive": "2wd" },
+		{ "id": 0, "brand": "brand2", "color": "black", "engineSize": 0, "drive": "2wd" },
 		{ "id": 1, "brand": "brand1", "color": "white", "engineSize": 1, "drive": "4wd" },
 		{ "id": 2, "brand": "brand0", "color": "orange", "engineSize": 2, "drive": "4wd" },
 		{ "id": 3, "brand": "brand3", "color": "blue", "engineSize": 3, "drive": "awd" },
@@ -14,5 +14,5 @@
     "comments": [
 		{ "id": 1, "body": "some comment", "postId": 1 }
     ],
-    "profile": { "name": "typicode" }
+	"profile": { "name": "typicode" }
 }
