@@ -9,4 +9,7 @@ export const handleNoData = (disp, ce) => {
         responseCode: 0
     };
     disp(ce(errObj));
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
 };

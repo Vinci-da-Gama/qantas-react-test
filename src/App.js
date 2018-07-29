@@ -10,38 +10,21 @@ import NoData from './component/no-data';
 import { fetchAllCars } from './actions';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			selectedCars: []
-		};
-	}
 
 	componentWillMount() {
 	  this.props.fetchAllCars();
 	}
-
-	componentWillReceiveProps(nextProps){
-        if(nextProps.cars !== this.props.cars) {
-            this.setState({
-				selectedCars: nextProps.cars
-			});
-		}
-    }
 	
   	render() {
-		console.log('34 -- ', this.props);
-		if (!this.props.cars && this.props.cars !== undefined) {
-			console.log('36 -- ', this.props);
+		if (!this.props.cars.cars && this.props.cars.cars !== undefined) {
 			return (
 				<Spinner />
 			);
-		} /* else if (this.props.cars.hasOwnProperty('errorMessage')) {
+		} else if (this.props.cars.hasOwnProperty('errorMessage')) {
 			return (
 				<NoData />
 			);
-		} */
-		console.log('45 -- ', this.props.cars.cars);
+		}
 		return (
 			<div className="container-fluid px-0">
 				<header>
@@ -59,7 +42,7 @@ class App extends Component {
 						</div>
 					</div>
 				</header>
-				<CarsList cars={this.state.selectedCars} />
+				<CarsList cars={this.props.cars.cars} />
 			</div>
 		);
   	}
@@ -67,7 +50,7 @@ class App extends Component {
 
 const mapStateToProps = (cars) => {
 	return {
-		cars: cars.cars.cars
+		cars: cars.cars
 	};
 };
 

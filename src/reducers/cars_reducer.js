@@ -8,8 +8,8 @@ export default (state=STATE, action) => {
 	switch(action.type) {
 		case FETCH_CARS:
 			return {...state, cars: action.cars};
-		/* case CATCH_ERROR:
-			return action.err */
+		case CATCH_ERROR:
+			return action.err
         default:
             return state;
 	}

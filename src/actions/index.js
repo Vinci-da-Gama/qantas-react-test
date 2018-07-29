@@ -11,25 +11,23 @@ const grabCars = (cars) => {
 	};
 };
 
-/* const catchError = (err) => {
+const catchError = (err) => {
 	return {
 		type: CATCH_ERROR,
 		err
 	};
-}; */
+};
 
-// error url: 'http://localhost:3000/cars?brand=brand3&color=blue&drive=null'
 export const fetchAllCars = () => {
 	return (dispatch) => {
 		return axios.get(url)
+		// return axios.get('http://localhost:3000/cars?brand=brand3&color=blue&drive=null')
 			.then((resp) => {
-				// console.log('18 -- ', resp.data, typeof resp.data);
-				/* if (resp.data.length > 0) {
+				if (resp.data.length > 0) {
 					dispatch(grabCars(resp.data));
 				} else {
 					handleNoData(dispatch, catchError);
-				} */
-				dispatch(grabCars(resp.data));
+				}
 			})
 			.catch((err) => {
 				handleError(err);
@@ -43,8 +41,11 @@ export const searchByFeatures = (brand, color, drive) => {
 	return (dispatch) => {
 		return axios.get(`${url}?brand=${brand}&color=${color}&drive=${drive}`)
 		.then((resp) => {
-			console.log('32 -- ', resp.data, typeof resp.data);
-			dispatch(grabCars(resp.data));
+			if (resp.data.length > 0) {
+				dispatch(grabCars(resp.data));
+			} else {
+				handleNoData(dispatch, catchError);
+			}
 		})
 		.catch((err) => {
 			handleError(err);
