@@ -13,7 +13,6 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedBrand:'',
 			selectedCars: []
 		};
 	}
@@ -23,24 +22,25 @@ class App extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-        if(nextProps.cars.cars !== this.props.cars.cars) {
+        if(nextProps.cars !== this.props.cars) {
             this.setState({
-				selectedCars: nextProps.cars.cars
+				selectedCars: nextProps.cars
 			});
 		}
     }
 	
   	render() {
-		if (!this.props.cars.cars && this.props.cars.cars !== undefined) {
-			console.log('35 -- ', this.props);
+		console.log('34 -- ', this.props);
+		if (!this.props.cars && this.props.cars !== undefined) {
+			console.log('36 -- ', this.props);
 			return (
 				<Spinner />
 			);
-		} else if (this.props.cars.hasOwnProperty('errorMessage')) {
+		} /* else if (this.props.cars.hasOwnProperty('errorMessage')) {
 			return (
 				<NoData />
 			);
-		}
+		} */
 		console.log('45 -- ', this.props.cars.cars);
 		return (
 			<div className="container-fluid px-0">
@@ -67,7 +67,7 @@ class App extends Component {
 
 const mapStateToProps = (cars) => {
 	return {
-		cars: cars.cars
+		cars: cars.cars.cars
 	};
 };
 

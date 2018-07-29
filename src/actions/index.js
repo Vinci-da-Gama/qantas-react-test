@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FETCH_CARS, CATCH_ERROR } from '../types';
-import { handleError } from '../helpers/error-handler';
+import { handleError, handleNoData } from '../helpers/error-handler';
 
 const url = 'http://localhost:3000/cars';
 
@@ -11,29 +11,25 @@ const grabCars = (cars) => {
 	};
 };
 
-const catchError = (err) => {
+/* const catchError = (err) => {
 	return {
 		type: CATCH_ERROR,
 		err
 	};
-};
+}; */
 
 // error url: 'http://localhost:3000/cars?brand=brand3&color=blue&drive=null'
 export const fetchAllCars = () => {
 	return (dispatch) => {
-		return axios.get('http://localhost:3000/cars?brand=brand3&color=blue&drive=null')
+		return axios.get(url)
 			.then((resp) => {
 				// console.log('18 -- ', resp.data, typeof resp.data);
-				if (resp.data.length > 0) {
+				/* if (resp.data.length > 0) {
 					dispatch(grabCars(resp.data));
 				} else {
-					const errObj = {
-						errorMessage: 'No data return.',
-						success: false,
-						responseCode: 0
-					};
-					dispatch(catchError(errObj));
-				}
+					handleNoData(dispatch, catchError);
+				} */
+				dispatch(grabCars(resp.data));
 			})
 			.catch((err) => {
 				handleError(err);
