@@ -35,6 +35,7 @@ class App extends Component {
 				<Spinner />
 			);
 		}
+		console.log(this.props.cars);
 		return (
 			<div className="container-fluid px-0">
 				<header>

@@ -23,9 +23,11 @@ export const fetchAllCars = () => {
 	};
 };
 
-export const searchByBrand = (brand) => {
+// http://localhost:3000/cars?brand=brand3&color=blue&drive=awd
+
+export const searchByFeatures = (brand, color, drive) => {
 	return (dispatch) => {
-		return axios.get(`${url}?brand=${brand}`)
+		return axios.get(`${url}?brand=${brand}&color=blue`)
 		.then((resp) => {
 			dispatch(grabCars(resp.data));
 		})
