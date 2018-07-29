@@ -76,61 +76,70 @@ class SelectSearch extends Component {
                 selectedBrand: '',
                 selectedColor: '',
                 selectedDrive: ''
-            }
+            },
+            brandValid: false,
+            colorValid: false,
+            driveValid: false,
+            formValid: false
         });
     }
 
     render() {
         console.log('27 -- props: ', this.props);
         return (
-            <form className="form-inline my-2 my-lg-0" noValidate onSubmit={(event) => this.onFormSubmit(event)}>
-                <label className="mr-sm-2" htmlFor="carBrand">
-                    Brand
-                </label>
-                <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" 
-                    onChange={this.handleSelection} value={this.state.selectedBrand} 
-                    name="selectedBrand" required>
-                    <option value="BRAND" disabled>BRAND</option>
-                    <option value="brand0">brand0</option>
-                    <option value="brand1">brand1</option>
-                    <option value="brand2">brand2</option>
-                    <option value="brand3">brand3</option>
-                    <option value="brand4">brand4</option>
-                    <option value="brand5">brand5</option>
-                    <option value="brand7">brand7</option>
-                    <option value="brand9">brand9</option>
-                </select>
-                <label className="mr-sm-2" htmlFor="carColor">
-                    Color
-                </label>
-                <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carColor" 
-                    onChange={this.handleSelection} value={this.state.selectedColor} 
-                    name="selectedColor" required>
-                    <option value="COLOR" disabled>COLOR</option>
-                    <option value="black">black</option>
-                    <option value="white">white</option>
-                    <option value="green">green</option>
-                    <option value="blue">blue</option>
-                    <option value="indigo">indigo</option>
-                    <option value="red">red</option>
-                    <option value="purple">purple</option>
-                </select>
-                <label className="mr-sm-2" htmlFor="carDrive">
-                    Drive
-                </label>
-                <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carDrive" 
-                    onChange={this.handleSelection} value={this.state.selectedDrive} 
-                    name="selectedDrive" required>
-                    <option value="DRIVE" disabled>DRIVE</option>
-                    <option value="2wd">2wd</option>
-                    <option value="4wd">4wd</option>
-                    <option value="awd">awd</option>
-                </select>
-                <button type="submit" className={`btn ${true ? 'btn-primary' : 'btn-light'}`} 
-                    disabled={!this.state.formValid}>
-                    Submit
-                </button>
-            </form>
+            <div>
+                <form className="form-inline my-2 my-lg-0" noValidate onSubmit={(event) => this.onFormSubmit(event)}>
+                    <label className="mr-sm-2" htmlFor="carBrand">
+                        Brand
+                    </label>
+                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" 
+                        onChange={this.handleSelection} value={this.state.selectedBrand} 
+                        name="selectedBrand" required>
+                        <option value="BRAND" disabled>BRAND</option>
+                        <option value="brand0">brand0</option>
+                        <option value="brand1">brand1</option>
+                        <option value="brand2">brand2</option>
+                        <option value="brand3">brand3</option>
+                        <option value="brand4">brand4</option>
+                        <option value="brand5">brand5</option>
+                        <option value="brand7">brand7</option>
+                        <option value="brand9">brand9</option>
+                    </select>
+                    <label className="mr-sm-2" htmlFor="carColor">
+                        Color
+                    </label>
+                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carColor" 
+                        onChange={this.handleSelection} value={this.state.selectedColor} 
+                        name="selectedColor" required>
+                        <option value="COLOR" disabled>COLOR</option>
+                        <option value="black">black</option>
+                        <option value="white">white</option>
+                        <option value="green">green</option>
+                        <option value="blue">blue</option>
+                        <option value="indigo">indigo</option>
+                        <option value="red">red</option>
+                        <option value="purple">purple</option>
+                    </select>
+                    <label className="mr-sm-2" htmlFor="carDrive">
+                        Drive
+                    </label>
+                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carDrive" 
+                        onChange={this.handleSelection} value={this.state.selectedDrive} 
+                        name="selectedDrive" required>
+                        <option value="DRIVE" disabled>DRIVE</option>
+                        <option value="2wd">2wd</option>
+                        <option value="4wd">4wd</option>
+                        <option value="awd">awd</option>
+                    </select>
+                    <button type="submit" className={`btn ${this.state.formValid ? 'btn-primary' : 'btn-light'}`} 
+                        disabled={!this.state.formValid}>
+                        Submit
+                    </button>
+                </form>
+                <div className="panel panel-default">
+                    <FormFieldsError formErrors={this.state.formErrors} />
+                </div>
+            </div>
         )
     }
 }

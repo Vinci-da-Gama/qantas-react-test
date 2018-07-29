@@ -38,6 +38,9 @@ class App extends Component {
 						</button>
 					
 						<div className="collapse navbar-collapse" id="collapseNavbar">
+							<p className="form-control-static text-secondary no-selected-text mb-0 mr-3">
+								Check db.json for searching cars result.
+							</p>
 							<SelectSearch />
 						</div>
 					</div>
