@@ -13,13 +13,13 @@ class SelectSearch extends Component {
         }
     }
 
-	/* onSelectedBrand(brand) {
-        this.props.searchByFeatures(brand);
-    } */
+    onFormSubmit() {
+        this.props.searchByFeatures(this.state.selectedBrand, this.state.selectedColor, this.state.selectedDrive);
+    }
 
     render() {
         return (
-            <form className="form-inline my-2 my-lg-0" noValidate>
+            <form className="form-inline my-2 my-lg-0" noValidate onSubmit={() => this.onFormSubmit()}>
                 <label className="mr-sm-2" htmlFor="carBrand">
                     Brand
                 </label>
@@ -59,7 +59,7 @@ class SelectSearch extends Component {
                     <option value="4wd">4wd</option>
                     <option value="awd">awd</option>
                 </select>
-                {/* <button type="submit" className="btn btn-primary">Submit</button> */}
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         )
     }

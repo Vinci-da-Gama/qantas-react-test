@@ -6,6 +6,7 @@ import './App.css';
 import CarsList from './container/cars-list';
 import Spinner from './component/spinner';
 import SelectSearch from './container/select-search';
+import NoData from './component/no-data';
 import { fetchAllCars } from './actions';
 
 class App extends Component {
@@ -22,20 +23,25 @@ class App extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-        if(nextProps.cars !== this.props.cars){
+        if(nextProps.cars.cars !== this.props.cars.cars) {
             this.setState({
-				selectedCars: nextProps.cars
+				selectedCars: nextProps.cars.cars
 			});
 		}
     }
 	
   	render() {
-		if (!this.props.cars.length || !this.props.cars) {
+		if (!this.props.cars.cars && this.props.cars.cars !== undefined) {
+			console.log('35 -- ', this.props);
 			return (
 				<Spinner />
 			);
+		} else if (this.props.cars.hasOwnProperty('errorMessage')) {
+			return (
+				<NoData />
+			);
 		}
-		console.log(this.props.cars);
+		console.log('45 -- ', this.props.cars.cars);
 		return (
 			<div className="container-fluid px-0">
 				<header>
@@ -61,7 +67,7 @@ class App extends Component {
 
 const mapStateToProps = (cars) => {
 	return {
-		cars: cars.cars.cars
+		cars: cars.cars
 	};
 };
 
