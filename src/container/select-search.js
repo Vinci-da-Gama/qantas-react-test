@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { searchByFeatures } from '../actions';
+import { FormFieldsError } from '../component/formNfields-error';
 
 class SelectSearch extends Component {
     constructor(props) {
@@ -9,8 +10,59 @@ class SelectSearch extends Component {
         this.state = {
             selectedBrand: '',
             selectedColor: '',
-            selectedDrive: ''
+            selectedDrive: '',
+            formErrors: {
+                selectedBrand: '',
+                selectedColor: '',
+                selectedDrive: ''
+            },
+            brandValid: false,
+            colorValid: false,
+            driveValid: false,
+            formValid: false
         };
+    }
+
+    handleSelection = (e) => {
+        const name = e.target.name;
+        const val = e.target.value;
+        this.setState({[name]: val}, () => {
+            this.validateFields(name, val)
+        });
+    }
+
+    validateFields(fn, val) {
+        let fieldsErrors = this.state.formErrors;
+        let bv = this.state.brandValid;
+        let cv = this.state.colorValid;
+        let dv = this.state.driveValid;
+
+        switch (fn) {
+            case 'selectedBrand':
+                bv = val !== '' && val !== null && val !== undefined;
+                fieldsErrors.selectedBrand = bv ? '' : 'is required.';
+                break;
+            case 'selectedColor':
+                cv = val !== '' && val !== null && val !== undefined;
+                fieldsErrors.selectedColor = cv ? '' : 'is required.';
+                break;
+            case 'selectedDrive':
+                dv = val !== '' && val !== null && val !== undefined;
+                fieldsErrors.selectedDrive = dv ? '' : 'is required.';
+                break;
+            default:
+                break;
+        }
+        this.setState({
+            formErrors: fieldsErrors,
+            brandValid: bv,
+            colorValid: cv,
+            driveValid: dv
+        }, this.validateForm);
+    }
+
+    validateForm() {
+        this.setState({formValid: this.state.brandValid && this.state.colorValid && this.state.driveValid});
     }
 
     onFormSubmit(e) {
@@ -19,7 +71,12 @@ class SelectSearch extends Component {
         this.setState({
             selectedBrand: '',
             selectedColor: '',
-            selectedDrive: ''
+            selectedDrive: '',
+            formErrors: {
+                selectedBrand: '',
+                selectedColor: '',
+                selectedDrive: ''
+            }
         });
     }
 
@@ -31,8 +88,8 @@ class SelectSearch extends Component {
                     Brand
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" 
-                    onChange={(event) => this.setState({selectedBrand: event.target.value})} 
-                    value={this.state.selectedBrand} name="selectedBrand" required>
+                    onChange={this.handleSelection} value={this.state.selectedBrand} 
+                    name="selectedBrand" required>
                     <option value="BRAND" disabled>BRAND</option>
                     <option value="brand0">brand0</option>
                     <option value="brand1">brand1</option>
@@ -47,8 +104,8 @@ class SelectSearch extends Component {
                     Color
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carColor" 
-                    onChange={(event) => {this.setState({selectedColor: event.target.value});}} 
-                    value={this.state.selectedColor} name="selectedColor" required>
+                    onChange={this.handleSelection} value={this.state.selectedColor} 
+                    name="selectedColor" required>
                     <option value="COLOR" disabled>COLOR</option>
                     <option value="black">black</option>
                     <option value="white">white</option>
@@ -62,14 +119,15 @@ class SelectSearch extends Component {
                     Drive
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carDrive" 
-                    onChange={(event) => {this.setState({selectedDrive: event.target.value});}} 
-                    value={this.state.selectedDrive} name="selectedDrive" required>
+                    onChange={this.handleSelection} value={this.state.selectedDrive} 
+                    name="selectedDrive" required>
                     <option value="DRIVE" disabled>DRIVE</option>
                     <option value="2wd">2wd</option>
                     <option value="4wd">4wd</option>
                     <option value="awd">awd</option>
                 </select>
-                <button type="submit" className={`btn ${true ? 'btn-primary' : 'btn-light'}`}>
+                <button type="submit" className={`btn ${true ? 'btn-primary' : 'btn-light'}`} 
+                    disabled={!this.state.formValid}>
                     Submit
                 </button>
             </form>
