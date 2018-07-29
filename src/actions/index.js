@@ -21,7 +21,6 @@ const catchError = (err) => {
 export const fetchAllCars = () => {
 	return (dispatch) => {
 		return axios.get(url)
-		// return axios.get('http://localhost:3000/cars?brand=brand3&color=blue&drive=null')
 			.then((resp) => {
 				if (resp.data.length > 0) {
 					dispatch(grabCars(resp.data));

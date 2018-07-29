@@ -24,13 +24,15 @@ class SelectSearch extends Component {
     }
 
     render() {
+        console.log('27 -- props: ', this.props);
         return (
             <form className="form-inline my-2 my-lg-0" noValidate onSubmit={(event) => this.onFormSubmit(event)}>
                 <label className="mr-sm-2" htmlFor="carBrand">
                     Brand
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carBrand" 
-                    onChange={(event) => this.setState({selectedBrand: event.target.value})}>
+                    onChange={(event) => this.setState({selectedBrand: event.target.value})} 
+                    value={this.state.selectedBrand} name="selectedBrand" required>
                     <option value="BRAND" disabled>BRAND</option>
                     <option value="brand0">brand0</option>
                     <option value="brand1">brand1</option>
@@ -45,7 +47,8 @@ class SelectSearch extends Component {
                     Color
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carColor" 
-                    onChange={(event) => {this.setState({selectedColor: event.target.value});}}>
+                    onChange={(event) => {this.setState({selectedColor: event.target.value});}} 
+                    value={this.state.selectedColor} name="selectedColor" required>
                     <option value="COLOR" disabled>COLOR</option>
                     <option value="black">black</option>
                     <option value="white">white</option>
@@ -59,13 +62,16 @@ class SelectSearch extends Component {
                     Drive
                 </label>
                 <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="carDrive" 
-                    onChange={(event) => {this.setState({selectedDrive: event.target.value});}}>
+                    onChange={(event) => {this.setState({selectedDrive: event.target.value});}} 
+                    value={this.state.selectedDrive} name="selectedDrive" required>
                     <option value="DRIVE" disabled>DRIVE</option>
                     <option value="2wd">2wd</option>
                     <option value="4wd">4wd</option>
                     <option value="awd">awd</option>
                 </select>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className={`btn ${true ? 'btn-primary' : 'btn-light'}`}>
+                    Submit
+                </button>
             </form>
         )
     }
