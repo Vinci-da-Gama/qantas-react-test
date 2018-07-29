@@ -10,16 +10,22 @@ class SelectSearch extends Component {
             selectedBrand: '',
             selectedColor: '',
             selectedDrive: ''
-        }
+        };
     }
 
-    onFormSubmit() {
+    onFormSubmit(e) {
+        e.preventDefault();
         this.props.searchByFeatures(this.state.selectedBrand, this.state.selectedColor, this.state.selectedDrive);
+        this.setState({
+            selectedBrand: '',
+            selectedColor: '',
+            selectedDrive: ''
+        });
     }
 
     render() {
         return (
-            <form className="form-inline my-2 my-lg-0" noValidate onSubmit={() => this.onFormSubmit()}>
+            <form className="form-inline my-2 my-lg-0" noValidate onSubmit={(event) => this.onFormSubmit(event)}>
                 <label className="mr-sm-2" htmlFor="carBrand">
                     Brand
                 </label>
